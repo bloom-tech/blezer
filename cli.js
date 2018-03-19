@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-const argv = require('yargs')
+require('yargs')
   .env('BLEZER')
   .version()
   .usage('Usage: blezer <command> [options]')
@@ -8,5 +8,5 @@ const argv = require('yargs')
   .command(['create <name>', 'c'], 'Create', require('./cli/create'))
   .help('h')
   .alias('h', 'help')
-  .epilogue('for more information, find the documentation at https://blezer.io')
+  .epilogue('for more information, find the documentation at https://github.com/bloom-tech/blezer')
   .argv;

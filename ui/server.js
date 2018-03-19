@@ -15,7 +15,7 @@ const Promise = require('bluebird');
 const Huncwot = require('huncwot');
 
 const api = require('./api');
-const { home, queues, jobs, tasks } = require('./routes');
+const { home, queues, jobs } = require('./routes');
 
 function server(port) {
   const app = new Huncwot();

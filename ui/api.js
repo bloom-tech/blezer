@@ -13,7 +13,6 @@
 
 const Promise = require('bluebird');
 const { ok, created } = require('huncwot/response');
-const cluster = require('cluster');
 
 const Queue = require('../lib/queue');
 const Job = require('../lib/job');
@@ -54,7 +53,7 @@ async function removeJobs(request) {
     return ok(false);
   }
 
-  const job = await Job.empty(status);
+  await Job.empty(status);
 
   return ok();
 }

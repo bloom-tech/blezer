@@ -11,7 +11,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.const Promise = require('bluebird');
 
-const cluster = require('cluster');
 const { redirect } = require('huncwot/response');
 const { page } = require('huncwot/view');
 

@@ -7,13 +7,13 @@ Sugar.Number.extend();
 
 const env = nunjucks.configure(resolve(dirname(module.filename), 'views'), { autoescape: true });
 env.addFilter('date', (date, format) => {
-  return Date.create(parseInt(date)).relative()
+  return Date.create(parseInt(date)).relative();
 });
 
 env.addFilter('duration', (dates, format) => {
   const finished = Date.create(parseInt(dates[0]));
   const started = Date.create(parseInt(dates[1]));
-  return (finished - started).duration()
+  return (finished - started).duration();
 });
 
 env.addFilter('name', (queue, format) => {
