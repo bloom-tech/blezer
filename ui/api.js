@@ -12,7 +12,7 @@
 // limitations under the License.
 
 const Promise = require('bluebird');
-const { ok, created } = require('huncwot/response');
+const { ok, created, json } = require('huncwot/response');
 
 const Queue = require('../lib/queue');
 const Job = require('../lib/job');
@@ -49,11 +49,11 @@ async function remove(request) {
 async function removeJobs(request) {
   const { status } = request.params;
 
-  if (!/(^active$)|(^processed$)|(^failed$)/.test(status)) {
-    return ok(false);
+  if (!['active', 'processed'].includes(status)) {
+    return json({ error: 'invalid status' }, 400);
   }
-
-  await Job.empty(status);
+  const jobs = await Job[status]();
+  await Promise.each(jobs, job => Job.remove(job.jid));
 
   return ok();
 }
@@ -131,4 +131,4 @@ async function search(request) {
   return '';
 }
 
-module.exports = { all, size, enqueue, stats, search, jobs, job, remove, retry, removeJobs};
+module.exports = { all, size, enqueue, stats, search, jobs, job, remove, retry, removeJobs };
