@@ -115,11 +115,9 @@ async function stats(request) {
   const stats = await Promise.all([
     Stats.active,
     Stats.processed,
-    Stats.failed,
     Stats.enqueued,
-  ]).spread((active, processed, failed, enqueued) => ({
+  ]).spread((active, processed, enqueued) => ({
     processed,
-    failed,
     active,
     enqueued,
   }));
